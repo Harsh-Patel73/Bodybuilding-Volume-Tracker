@@ -1,0 +1,310 @@
+.muscle-config {
+  background-color: #111;
+  border: 1px solid #222;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.config-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.config-header h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.reset-btn {
+  padding: 0.25rem 0.5rem;
+  background-color: transparent;
+  border: 1px solid #333;
+  border-radius: 0.375rem;
+  color: #666;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.reset-btn:hover {
+  border-color: #fbbf24;
+  color: #fbbf24;
+}
+
+.config-description {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.muscle-regions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.region-group {
+  background-color: #0a0a0a;
+  border: 1px solid #222;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  transition: all 0.15s;
+}
+
+.region-group.expanded {
+  border-color: #333;
+}
+
+.region-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.region-header:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.region-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  min-width: 70px;
+  text-align: left;
+}
+
+.region-progress {
+  flex: 1;
+  height: 4px;
+  background-color: #1a1a1a;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.region-percentage {
+  font-size: 0.7rem;
+  font-weight: 600;
+  min-width: 35px;
+  text-align: right;
+}
+
+.expand-icon {
+  font-size: 0.6rem;
+  color: #666;
+  transition: transform 0.15s;
+  margin-left: 0.25rem;
+}
+
+.expand-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.muscle-list {
+  padding: 0.5rem;
+  border-top: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.muscle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 0.375rem;
+}
+
+.muscle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.muscle-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.muscle-progress-text {
+  font-size: 0.65rem;
+  font-weight: 500;
+}
+
+.target-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.target-adjust-btn {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 0.25rem;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.target-adjust-btn:hover:not(:disabled) {
+  border-color: #fbbf24;
+  color: #fbbf24;
+}
+
+.target-adjust-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.target-input {
+  width: 36px;
+  padding: 0.25rem;
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 0.25rem;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.target-input:focus {
+  outline: none;
+  border-color: #fbbf24;
+}
+
+/* Hide number input spinners */
+.target-input::-webkit-outer-spin-button,
+.target-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.target-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@media (max-width: 480px) {
+  .muscle-config {
+    padding: 0.75rem;
+  }
+
+  .region-name {
+    min-width: 60px;
+    font-size: 0.75rem;
+  }
+
+  .muscle-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.375rem;
+  }
+
+  .target-input-wrapper {
+    align-self: flex-end;
+  }
+}
+
+/* Light Theme */
+.light-theme .muscle-config {
+  background-color: #f5f5f5;
+  border-color: #d0d0d0;
+}
+
+.light-theme .config-header h3 {
+  color: #1a1a1a;
+}
+
+.light-theme .reset-btn {
+  border-color: #d0d0d0;
+  color: #666;
+}
+
+.light-theme .reset-btn:hover {
+  border-color: #d97706;
+  color: #d97706;
+}
+
+.light-theme .region-group {
+  background-color: #fff;
+  border-color: #e0e0e0;
+}
+
+.light-theme .region-group.expanded {
+  border-color: #d0d0d0;
+}
+
+.light-theme .region-header:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.light-theme .region-name {
+  color: #1a1a1a;
+}
+
+.light-theme .region-progress {
+  background-color: #e0e0e0;
+}
+
+.light-theme .muscle-list {
+  border-top-color: #e0e0e0;
+}
+
+.light-theme .muscle-row {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.light-theme .muscle-name {
+  color: #1a1a1a;
+}
+
+.light-theme .target-adjust-btn {
+  background-color: #f0f0f0;
+  border-color: #d0d0d0;
+  color: #1a1a1a;
+}
+
+.light-theme .target-adjust-btn:hover:not(:disabled) {
+  border-color: #d97706;
+  color: #d97706;
+}
+
+.light-theme .target-input {
+  background-color: #fff;
+  border-color: #d0d0d0;
+  color: #1a1a1a;
+}
+
+.light-theme .target-input:focus {
+  border-color: #d97706;
+}

@@ -1,0 +1,294 @@
+.body-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.view-btn {
+  padding: 0.5rem 1rem;
+  background-color: #1a1a1a;
+  color: #666;
+  border: 1px solid #333;
+  border-radius: 0.375rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.view-btn:hover {
+  border-color: #444;
+  color: #999;
+}
+
+.view-btn.active {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: #fff;
+}
+
+.view-btn.config-btn {
+  background-color: transparent;
+  border: 1px solid #333;
+}
+
+.view-btn.config-btn:hover {
+  border-color: #444;
+}
+
+.view-btn.config-btn.active {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+/* Diagram wrapper for side-by-side layout */
+.diagram-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.diagram-wrapper.with-config {
+  justify-content: center;
+}
+
+.config-panel-left {
+  width: 280px;
+  max-height: 600px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.config-panel-left .muscle-config {
+  margin-top: 0;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 800px) {
+  .diagram-wrapper {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .config-panel-left {
+    width: 100%;
+    max-width: 380px;
+    max-height: none;
+  }
+}
+
+.diagram-container {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  background: linear-gradient(180deg, #0d0d0d 0%, #080808 50%, #050505 100%);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  border: 1px solid #1a1a1a;
+  overflow: hidden;
+}
+
+/* SVG body diagram */
+.body-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Muscle path styling */
+.muscle-path {
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.muscle-path:hover,
+.muscle-path.hovered {
+  filter: brightness(1.2);
+}
+
+/* Tooltip styling */
+.tooltip {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(51, 51, 51, 0.6);
+  border-radius: 0.5rem;
+  padding: 0.875rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  z-index: 100;
+  min-width: 180px;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  animation: tooltipFade 0.15s ease-out;
+  pointer-events: none;
+}
+
+@keyframes tooltipFade {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.tooltip::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgba(17, 17, 17, 0.85);
+}
+
+.tooltip strong {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.tooltip span {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.tooltip-percentage {
+  color: #3b82f6 !important;
+  font-weight: 700;
+  font-size: 1rem !important;
+}
+
+.tooltip-breakdown {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tooltip-muscle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tooltip-muscle-name {
+  color: #999 !important;
+  font-size: 0.75rem !important;
+  text-align: left;
+}
+
+.tooltip-muscle-sets {
+  color: #666 !important;
+  font-size: 0.75rem !important;
+  white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .diagram-container {
+    max-width: 300px;
+    padding: 0.5rem;
+  }
+
+  .tooltip {
+    min-width: 150px;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Subtle texture overlay effect */
+.diagram-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.015;
+  pointer-events: none;
+  border-radius: 0.5rem;
+}
+
+/* Light Theme */
+.light-theme .view-btn {
+  background-color: #f0f0f0;
+  color: #666;
+  border-color: #d0d0d0;
+}
+
+.light-theme .view-btn:hover {
+  border-color: #a0a0a0;
+  color: #333;
+}
+
+.light-theme .view-btn.config-btn {
+  background-color: transparent;
+  border-color: #d0d0d0;
+}
+
+.light-theme .diagram-container {
+  background: linear-gradient(180deg, #f0f0f0 0%, #e8e8e8 50%, #e0e0e0 100%);
+  border-color: #d0d0d0;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .tooltip {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(208, 208, 208, 0.6);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}
+
+.light-theme .tooltip::before {
+  border-bottom-color: rgba(255, 255, 255, 0.85);
+}
+
+.light-theme .tooltip strong {
+  color: #1a1a1a;
+}
+
+.light-theme .tooltip span {
+  color: #666;
+}
+
+.light-theme .tooltip-breakdown {
+  border-top-color: #d0d0d0;
+}
+
+.light-theme .tooltip-muscle-name {
+  color: #555 !important;
+}
+
+.light-theme .tooltip-muscle-sets {
+  color: #777 !important;
+}
